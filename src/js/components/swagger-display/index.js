@@ -4,17 +4,29 @@ import SwaggerUI from 'swagger-ui-react';
 
 import { connect } from 'react-redux';
 
-const sampleFile = 'https://raw.githubusercontent.com/swagger-api/swagger-samples/master/java/inflector-dropwizard/src/main/swagger/swagger.yaml';
+import { UrlService } from 'src/js/services/url';
 
 class SwaggerDisplayComponent extends React.Component {
 
   static propTypes = {};
 
-  state = {};
+  state = {
+    url: ''
+  };
+
+  componentDidMount() {
+    const params = UrlService.getParamsFromHash();
+    const url = params.get('url');
+    if (url) {
+      this.setState({
+        url
+      });
+    }
+  }
 
   render() {
     return (
-      <SwaggerUI url={sampleFile} />
+      <SwaggerUI url={this.state.url} />
     );
   }
 

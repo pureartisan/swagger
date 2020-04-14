@@ -27,7 +27,6 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-lodash": "^3.3.4",
-    "babel-preset-react-hmre": "^1.1.1",
     "chai": "^4.2.0",
     "chalk": "^4.0.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -70,7 +69,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "start": "cross-env NODE_ENV=development HOST=0.0.0.0 webpack-dev-server",
+    "start": "cross-env NODE_ENV=development HOST=localhost PORT=8080 webpack-dev-server",
     "lint:scss": "stylelint ./src/**/*.scss --syntax scss",
     "lint:scss:fix": "stylelint ./src/**/*.scss --syntax scss --fix",
     "lint:js": "./node_modules/.bin/eslint ./src --ext .js,.jsx",

@@ -13,8 +13,8 @@ const packageJson = require('./package.json');
 const setupWebpackConfig = (env) => {
 
   const PATHS = {
+    root: path.resolve(__dirname),
     src: path.join(__dirname, 'src'),
-    build: path.join(__dirname, 'build'),
     public: path.join(__dirname, 'public')
   };
 
@@ -49,7 +49,7 @@ const setupWebpackConfig = (env) => {
       },
     },
     output: {
-      path: '',
+      path: PATHS.root,
       publicPath: '',
       filename: 'public/[name].js',
     },
@@ -140,7 +140,7 @@ const setupWebpackConfig = (env) => {
   if (env.NODE_ENV === 'development') {
     common = merge(common, {
       devServer: {
-        contentBase: PATHS.build,
+        contentBase: PATHS.public,
 
         // Enable history API fallback so HTML5 History API based
         // routing works. This is a good default that will come

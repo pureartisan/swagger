@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AppEntry = () => (
-  <div>Test</div>
+  <div>Test Page</div>
 );
 
 export {

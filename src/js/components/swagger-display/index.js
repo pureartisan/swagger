@@ -15,7 +15,7 @@ class SwaggerDisplayComponent extends React.Component {
   };
 
   componentDidMount() {
-    const params = UrlService.getParamsFromHash();
+    const params = UrlService.getParams();
     const url = params.get('url');
     if (url) {
       this.setState({

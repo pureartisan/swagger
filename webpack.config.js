@@ -109,9 +109,6 @@ const setupWebpackConfig = (env) => {
       ]
     },
     plugins: [
-      new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: ['public/**/*', '!.gitkeep']
-      }),
       new CopyPlugin([
         {
           from: `${PATHS.src}/img`,
@@ -136,6 +133,15 @@ const setupWebpackConfig = (env) => {
       }
     }
   };
+
+  if (env.NODE_ENV !== 'development') {
+    common.plugins = [
+      new CleanWebpackPlugin({
+        cleanOnceBeforeBuildPatterns: ['public/**/*', '!.gitkeep']
+      }),
+      ...common.plugins
+    ];
+  }
 
   if (env.NODE_ENV === 'development') {
     common = merge(common, {

@@ -8,6 +8,10 @@ class UrlService {
     return new URLSearchParams(hash);
   }
 
+  getParams() {
+    return new URLSearchParams(window.location.search);
+  }
+
 }
 
 const singleton = new UrlService();

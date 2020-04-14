@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { SwaggerDisplay } from 'src/js/components/swagger-display';
+
 const AppEntry = () => (
-  <div>Test Page</div>
+  <SwaggerDisplay />
 );
 
 export {

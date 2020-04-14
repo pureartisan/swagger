@@ -14,7 +14,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "swagger-ui-react": "^3.25.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",

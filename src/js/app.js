@@ -10,8 +10,7 @@ import { AppEntry } from 'src/js/components/app-entry';
 import 'src/styles/app.scss';
 
 // init app
-const appInitialiser = new AppInitialiser();
-appInitialiser.init();
+AppInitialiser.init();
 
 const mountApp = () => {
   ReactDOM.render(

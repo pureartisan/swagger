@@ -1,11 +1,16 @@
+import { BitbucketService } from 'src/js/services/bitbucket';
+
 class AppInitialiser {
 
   init() {
-    // TODO
+    BitbucketService.init();
   }
 
 }
 
+
+const singleton = new AppInitialiser();
+
 export {
-  AppInitialiser
+  singleton as AppInitialiser
 };

@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
+    "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -52,7 +53,7 @@
     "mocha": "^7.1.1",
     "node-sass": "^4.13.1",
     "npm": "^6.14.4",
-    "replace": "^1.1.5",
+    "replace": "^1.2.0",
     "resolve-url-loader": "^3.1.1",
     "sass-loader": "^8.0.2",
     "sinon": "^9.0.2",

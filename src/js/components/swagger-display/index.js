@@ -28,7 +28,7 @@ class SwaggerDisplayComponent extends React.Component {
   requestInterceptor(req) {
     if (req.loadSpec) {
       if (BitbucketService.isBitbucketUrl(req.url)) {
-        req.headers.Authorization = `Basic ${BitbucketService.accessToken}`;
+        req.headers['Authorization'] = `Bearer ${BitbucketService.accessToken}`;
         req.url = BitbucketService.getRawContentUrl(req.url);
       }
     }

@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie';
+
 class StorageService {
 
   get(key, defaultValue = null) {
@@ -42,6 +44,24 @@ class StorageService {
 
   sessionClear() {
     sessionStorage.clear();
+  }
+
+  cookieGet(key, defaultValue = null) {
+    try {
+      const json = Cookies.get(key);
+      return JSON.parse(json);
+    } catch {
+      return defaultValue;
+    }
+  }
+
+  cookieSet(key, value, options = {}) {
+    const json = JSON.stringify(value);
+    Cookies.set(key, json, options);
+  }
+
+  cookieRemove(key, options = {}) {
+    Cookies.remove(key, options);
   }
 
 }

@@ -11,7 +11,7 @@ class BitbucketService {
   accessToken = null;
 
   init() {
-    this.accessToken = StorageService.sessionGet(STORAGE_KEY_ACCESS_TOKEN);
+    this.accessToken = StorageService.cookieGet(STORAGE_KEY_ACCESS_TOKEN);
     this.readAccessToken();
   }
 
@@ -32,9 +32,14 @@ class BitbucketService {
         const hashParams = UrlService.getParamsFromHash();
         const accessToken = hashParams.get('access_token');
         const tokenType = hashParams.get('token_type');
+        const expiresIn = hashParams.get('expires_in');
         if (accessToken && tokenType === BITBUCKET_ACCESS_TOKEN_TYPE) {
           this.accessToken = accessToken;
-          StorageService.sessionSet(STORAGE_KEY_ACCESS_TOKEN, accessToken);
+          const options = {};
+          if (expiresIn > 0) {
+            options.expires = new Date(new Date().getTime() + expiresIn * 1000);
+          }
+          StorageService.cookieSet(STORAGE_KEY_ACCESS_TOKEN, accessToken, options);
           this.redirectToPrevUrl();
         }
       }

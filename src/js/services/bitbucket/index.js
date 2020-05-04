@@ -60,6 +60,11 @@ class BitbucketService {
     return url.match(/^https?:\/\/bitbucket\.org\/.*/i);
   }
 
+  getRawContentUrl(url) {
+    const path = url.replace(/^https?:\/\/bitbucket\.org\//i, '');
+    return `https://api.bitbucket.org/2.0/repositories/${path}`;
+  }
+
 }
 
 const singleton = new BitbucketService();

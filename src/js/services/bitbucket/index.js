@@ -6,6 +6,8 @@ import { UrlService } from 'src/js/services/url';
 const STORAGE_KEY_ACCESS_TOKEN = 'bitbucket-access-token';
 const STORAGE_KEY_REDIRECT = 'bitbucket-redirect';
 
+const AUTH_PROVIDER = 'bitbucket';
+
 class BitbucketService {
 
   accessToken = null;
@@ -28,7 +30,7 @@ class BitbucketService {
     if (force || !this.accessToken) {
       const params = UrlService.getParams();
       const auth = params.get('auth');
-      if (auth === 'bitbucket') {
+      if (auth === AUTH_PROVIDER) {
         const hashParams = UrlService.getParamsFromHash();
         const accessToken = hashParams.get('access_token');
         const tokenType = hashParams.get('token_type');
@@ -55,7 +57,10 @@ class BitbucketService {
   }
 
   buildAuthorizeUrl() {
-    return `https://bitbucket.org/site/oauth2/authorize?client_id=${BITBUCKET_CLIENT}&response_type=token`;
+    return UrlService.buildUrl('https://bitbucket.org/site/oauth2/authorize', {
+      'client_id': BITBUCKET_CLIENT,
+      'response_type': 'token'
+    });
   }
 
   isBitbucketUrl(url) {
@@ -65,7 +70,11 @@ class BitbucketService {
     return url.match(/^https?:\/\/bitbucket\.org\/.*/i);
   }
 
-  getRawContentUrl(url) {
+  getHttpAuthHeader() {
+    return `Bearer ${this.accessToken}`;
+  }
+
+  async getRawContentUrl(url) {
     const path = url.replace(/^https?:\/\/bitbucket\.org\//i, '');
     return `https://api.bitbucket.org/2.0/repositories/${path}`;
   }

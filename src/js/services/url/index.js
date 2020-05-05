@@ -1,3 +1,4 @@
+// `__APP_BASE_URL__` is injected by webpack during build
 const getBaseUrl = () => __APP_BASE_URL__;
 
 class UrlService {
@@ -15,18 +16,20 @@ class UrlService {
   }
 
   getAppUrl(params = null) {
+    return this.buildUrl(getBaseUrl(), params);
+  }
+
+  buildUrl(base, params = null) {
     let query = '';
     if (params) {
-      Object.keys(params).forEach(key => {
-        if (key !== undefined) {
-          query += `${key}=${encodeURIComponent(params[key])}`;
-        }
-      })
+      query = (new URLSearchParams(params)).toString();
     }
+
+    let join = '';
     if (query) {
-      query = `/?${query}`;
+      join = (base.indexOf('?') < 0) ? '?' : '&';
     }
-    return `${getBaseUrl()}${query}`;
+    return `${base}${join}${query}`;
   }
 
 }

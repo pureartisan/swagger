@@ -1,0 +1,2 @@
+export const GITLAB_ACCESS_TOKEN_TYPE = 'bearer';
+export const GITLAB_CLIENT = '8633576619e66a084e4234f6d431a51f81df5ce2a723bb66638690ddaf86fc91';

@@ -5,6 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 
 import { UrlService } from 'src/js/services/url';
 import { BitbucketService } from 'src/js/services/bitbucket';
+import { GitlabService } from 'src/js/services/gitlab';
 
 import { SwaggerDisplay } from 'src/js/components/swagger-display';
 import { MainForm } from 'src/js/components/main-form';
@@ -42,6 +43,9 @@ class HomePageComponent extends React.Component {
   needToAuthorize(url) {
     if (BitbucketService.isBitbucketUrl(url)) {
       return BitbucketService.authorize();
+    }
+    if (GitlabService.isGitlabUrl(url)) {
+      return GitlabService.authorize();
     }
     return false;
   }

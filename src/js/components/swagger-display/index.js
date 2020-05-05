@@ -5,6 +5,7 @@ import SwaggerUI from 'swagger-ui-react';
 import { connect } from 'react-redux';
 
 import { BitbucketService } from 'src/js/services/bitbucket';
+import { GitlabService } from 'src/js/services/gitlab/index';
 
 class SwaggerDisplayComponent extends React.Component {
 
@@ -15,11 +16,27 @@ class SwaggerDisplayComponent extends React.Component {
   state = {};
 
   requestInterceptor(req) {
+    return this.modifyRequest(req);
+  }
+
+  async modifyRequest(req) {
     if (req.loadSpec) {
+
+      let service = null;
       if (BitbucketService.isBitbucketUrl(req.url)) {
-        req.headers['Authorization'] = `Bearer ${BitbucketService.accessToken}`;
-        req.url = BitbucketService.getRawContentUrl(req.url);
+        service = BitbucketService;
+      } else if (GitlabService.isGitlabUrl(req.url)) {
+        service = GitlabService;
       }
+
+      console.log('service', service);
+      debugger;
+
+      if (service) {
+        req.headers['Authorization'] = service.getHttpAuthHeader();
+        req.url = await service.getRawContentUrl(req.url);
+      }
+
     }
     return req;
   }

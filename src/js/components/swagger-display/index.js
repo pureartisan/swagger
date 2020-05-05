@@ -4,26 +4,15 @@ import SwaggerUI from 'swagger-ui-react';
 
 import { connect } from 'react-redux';
 
-import { UrlService } from 'src/js/services/url';
 import { BitbucketService } from 'src/js/services/bitbucket';
 
 class SwaggerDisplayComponent extends React.Component {
 
-  static propTypes = {};
-
-  state = {
-    url: ''
+  static propTypes = {
+    url: PropTypes.string
   };
 
-  componentDidMount() {
-    const params = UrlService.getParams();
-    const url = params.get('url');
-    if (url && !this.needToAuthorize(url)) {
-      this.setState({
-        url
-      });
-    }
-  }
+  state = {};
 
   requestInterceptor(req) {
     if (req.loadSpec) {
@@ -37,18 +26,15 @@ class SwaggerDisplayComponent extends React.Component {
 
   render() {
     return (
-      <SwaggerUI
-        url={this.state.url}
-        requestInterceptor={req => this.requestInterceptor(req)}
-      />
+      <React.Fragment>
+        {this.props.url && (
+          <SwaggerUI
+            url={this.props.url}
+            requestInterceptor={req => this.requestInterceptor(req)}
+          />
+        )}
+      </React.Fragment>
     );
-  }
-
-  needToAuthorize(url) {
-    if (BitbucketService.isBitbucketUrl(url)) {
-      return BitbucketService.authorize();
-    }
-    return false;
   }
 
 }

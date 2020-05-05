@@ -1,21 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { SwaggerDisplay } from 'src/js/components/swagger-display';
+import { HomePage } from 'src/js/components/home-page';
 
-class AppEntry extends React.Component {
-
-  static propTypes = {};
-
-  state = {};
-
-  render() {
-    return (
-      <SwaggerDisplay />
-    );
-  }
-
-}
+const AppEntry = () => (
+  <HomePage />
+);
 
 export {
   AppEntry

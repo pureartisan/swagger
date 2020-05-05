@@ -12,6 +12,21 @@ class UrlService {
     return new URLSearchParams(window.location.search);
   }
 
+  getAppUrl(params = null) {
+    let query = '';
+    if (params) {
+      Object.keys(params).forEach(key => {
+        if (key !== undefined) {
+          query += `${key}=${encodeURIComponent(params[key])}`;
+        }
+      })
+    }
+    if (query) {
+      query = `/?${query}`;
+    }
+    return `${window.location.protocol}//${window.location.host}${query}`;
+  }
+
 }
 
 const singleton = new UrlService();

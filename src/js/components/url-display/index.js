@@ -26,7 +26,7 @@ class UrlDisplayComponent extends React.Component {
   };
 
   componentDidMount() {
-    if (!DeviceService.isMac()) {
+    if (DeviceService.isMac()) {
       this.setState({
         copyText: '⌘ + C'
       });

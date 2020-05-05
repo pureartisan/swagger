@@ -1,3 +1,5 @@
+const getBaseUrl = () => __APP_BASE_URL__;
+
 class UrlService {
 
   getParamsFromHash() {
@@ -24,7 +26,7 @@ class UrlService {
     if (query) {
       query = `/?${query}`;
     }
-    return `${window.location.protocol}//${window.location.host}${query}`;
+    return `${getBaseUrl()}${query}`;
   }
 
 }

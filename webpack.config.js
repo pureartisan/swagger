@@ -18,12 +18,16 @@ const setupWebpackConfig = (env) => {
     public: path.join(__dirname, 'public')
   };
 
+  process.env.BABEL_ENV = env.NODE_ENV;
+
+  const envFile = require(path.join(__dirname, 'env', `${env.NODE_ENV}.json`));
+
   const globalVars = {
     'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
     '__APP_VERSION__': JSON.stringify(packageJson.version),
+    '__APP_BASE_URL__': JSON.stringify(envFile.baseUrl),
   };
 
-  process.env.BABEL_ENV = env.NODE_ENV;
 
   let common = {
     mode: env.NODE_ENV,
@@ -78,6 +82,15 @@ const setupWebpackConfig = (env) => {
               loader: 'resolve-url-loader',
               options: {
 
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                config: {
+                  path: 'postcss.config.js'
+                }
               }
             },
             {

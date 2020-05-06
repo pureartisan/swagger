@@ -29,9 +29,6 @@ class SwaggerDisplayComponent extends React.Component {
         service = GitlabService;
       }
 
-      console.log('service', service);
-      debugger;
-
       if (service) {
         req.headers['Authorization'] = service.getHttpAuthHeader();
         req.url = await service.getRawContentUrl(req.url);

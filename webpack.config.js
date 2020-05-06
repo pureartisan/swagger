@@ -67,6 +67,10 @@ const setupWebpackConfig = (env) => {
           }
         },
         {
+          test: /\.svg$/,
+          use: ['@svgr/webpack', 'url-loader'],
+        },
+        {
           test: /\.s?css$/,
           use: [
             {

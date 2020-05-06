@@ -71,6 +71,11 @@ class GitlabService {
     }
   }
 
+  clearAccessToken() {
+    this.accessToken = null;
+    StorageService.cookieRemove(STORAGE_KEY_ACCESS_TOKEN);
+  }
+
   buildAuthorizeUrl() {
     return UrlService.buildUrl('https://gitlab.com/oauth/authorize', {
       'client_id': GITLAB_CLIENT,
@@ -106,9 +111,13 @@ class GitlabService {
     }
   }
 
-  async getProjectId(projectName) {
+  async getProjectId(projectPath) {
+    const parts = projectPath.split('/');
+    let projectName = projectPath;
+    if (parts.length > 1) {
+      projectName = parts[1];
+    }
     const apiUrl = `${GITLAB_API_BASE}/projects`;
-    console.log('apiUrl', apiUrl)
     const result = await axios.get(apiUrl, {
       ...this.getApiRequestDefaultConfig(),
       url: '/projects',
@@ -118,9 +127,11 @@ class GitlabService {
         simple: true
       }
     });
-    console.log('result', result);
-    if (result && result.length > 0) {
-      return result[0].id;
+    if (result && result.data && result.data.length > 0) {
+      const project = result.data.find(({ path_with_namespace }) => path_with_namespace === projectPath);
+      if (project && project.id) {
+        return project.id;
+      }
     }
     return projectName;
   }

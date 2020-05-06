@@ -9,6 +9,7 @@ import { GitlabService } from 'src/js/services/gitlab';
 
 import { SwaggerDisplay } from 'src/js/components/swagger-display';
 import { MainForm } from 'src/js/components/main-form';
+import { Footer } from 'src/js/components/footer';
 
 import './style.scss';
 
@@ -62,7 +63,10 @@ class HomePageComponent extends React.Component {
           <SwaggerDisplay url={this.state.url} />
         )}
         {this.state.showForm && (
-          <MainForm />
+          <React.Fragment>
+            <MainForm />
+            <Footer />
+          </React.Fragment>
         )}
       </React.Fragment>
     );

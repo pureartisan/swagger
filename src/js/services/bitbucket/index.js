@@ -56,6 +56,11 @@ class BitbucketService {
     }
   }
 
+  clearAccessToken() {
+    this.accessToken = null;
+    StorageService.cookieRemove(STORAGE_KEY_ACCESS_TOKEN);
+  }
+
   buildAuthorizeUrl() {
     return UrlService.buildUrl('https://bitbucket.org/site/oauth2/authorize', {
       'client_id': BITBUCKET_CLIENT,

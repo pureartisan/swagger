@@ -4,8 +4,7 @@ import SwaggerUI from 'swagger-ui-react';
 
 import { connect } from 'react-redux';
 
-import { BitbucketService } from 'src/js/services/bitbucket';
-import { GitlabService } from 'src/js/services/gitlab/index';
+import { BitbucketService, GitlabService } from 'src/js/services/sso-providers';
 
 class SwaggerDisplayComponent extends React.Component {
 

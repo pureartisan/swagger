@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { AppBar, Toolbar, IconButton } from '@material-ui/core';
+import { AppBar, Toolbar } from '@material-ui/core';
 
 import { BitbucketIcon, GitlabIcon } from 'src/js/components/icons';
+import { SsoProviderButton } from 'src/js/components/sso-provider-button';
 
-import { BitbucketService } from 'src/js/services/bitbucket';
-import { GitlabService } from 'src/js/services/gitlab';
+import { BitbucketService, GitlabService } from 'src/js/services/sso-providers';
 
 import './style.scss';
 
@@ -22,26 +22,24 @@ class FooterComponent extends React.Component {
 
   render() {
     return (
-      <AppBar position="fixed" color="primary" className="footer">
+      <AppBar position="fixed" color="primary" className="main-footer">
         <Toolbar>
 
-          {GitlabService.accessToken && (
-            <IconButton
-              edge="start"
-              onClick={() => this.handleIconClick(GitlabService)}
-            >
-              <GitlabIcon />
-            </IconButton>
-          )}
+          <SsoProviderButton
+            edge="start"
+            service={GitlabService}
+            label="Gitlab"
+          >
+            <GitlabIcon />
+          </SsoProviderButton>
 
-          {BitbucketService.accessToken && (
-            <IconButton
-              edge="end"
-              onClick={() => this.handleIconClick(BitbucketService)}
-            >
-              <BitbucketIcon />
-            </IconButton>
-          )}
+          <SsoProviderButton
+            edge="end"
+            service={BitbucketService}
+            label="Bitbucket"
+          >
+            <BitbucketIcon />
+          </SsoProviderButton>
 
         </Toolbar>
       </AppBar>

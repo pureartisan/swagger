@@ -2,9 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { CssBaseline, Container, TextField, Button} from '@material-ui/core';
+import { Link as LinkIcon } from '@material-ui/icons';
 
 import { UrlService } from 'src/js/services/url';
-import { BitbucketService } from 'src/js/services/bitbucket';
+import { BitbucketService, GitlabService } from 'src/js/services/sso-providers';
 
 import { UrlDisplay } from 'src/js/components/url-display';
 
@@ -22,6 +23,9 @@ class MainFormComponent extends React.Component {
   needToAuthorize(url) {
     if (BitbucketService.isBitbucketUrl(url)) {
       return BitbucketService.authorize();
+    }
+    if (GitlabService.isGitlabUrl(url)) {
+      return GitlabService.authorize();
     }
     return false;
   }
@@ -76,8 +80,10 @@ class MainFormComponent extends React.Component {
               <Button
                 variant="contained"
                 color="primary"
+                className="generate-button"
                 disabled={!this.state.input}
                 onClick={this.handleGenerateButtonClick}
+                startIcon={<LinkIcon />}
               >Generate URL</Button>
             </form>
             <UrlDisplay url={this.state.url} />

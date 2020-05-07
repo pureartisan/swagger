@@ -1,5 +1,4 @@
-import { BitbucketService } from 'src/js/services/bitbucket';
-import { GitlabService } from 'src/js/services/gitlab';
+import { BitbucketService, GitlabService } from 'src/js/services/sso-providers';
 
 class AppInitialiser {
 

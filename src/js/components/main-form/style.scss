@@ -21,6 +21,11 @@
       margin-bottom: 15px;
       background: white;
     }
+    .generate-button {
+      &:not([disabled]) {
+        color: white;
+      }
+    }
   }
   .url-display {
     width: 100%;

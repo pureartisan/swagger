@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
+import { IconButton, Menu, MenuItem, Tooltip } from '@material-ui/core';
 
 import './style.scss';
 
@@ -19,12 +19,20 @@ class SsoProviderButton extends React.Component {
     anchorEl: null
   };
 
+  closeMenu() {
+    this.setState({
+      anchorEl: null
+    });
+  }
+
   handleLogoutClick = () => {
     this.props.service.clearAccessToken();
+    this.closeMenu();
   }
 
   handleLoginClick = () => {
     this.props.service.authorize();
+    this.closeMenu();
   }
 
   handleIconClick = (event) => {
@@ -34,20 +42,20 @@ class SsoProviderButton extends React.Component {
   }
 
   handleMenuClose = () => {
-    this.setState({
-      anchorEl: null
-    });
+    this.closeMenu();
   }
 
   render() {
     const { service, className, label, active, ...props } = this.props;
     return (
       <React.Fragment>
-        <IconButton
-          {...props}
-          className={classNames(className, { inactive: !active })}
-          onClick={this.handleIconClick}
-        />
+        <Tooltip title={label}>
+          <IconButton
+            {...props}
+            className={classNames('sso-provider-button', className, { inactive: !active })}
+            onClick={this.handleIconClick}
+          />
+        </Tooltip>
         <Menu
           anchorEl={this.state.anchorEl}
           keepMounted

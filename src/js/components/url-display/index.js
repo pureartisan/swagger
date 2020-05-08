@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import { Button, Card, CardActions, CardContent, Fade, Snackbar } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Grow, Snackbar } from '@material-ui/core';
 import { Alert as MuiAlert } from '@material-ui/lab';
 
 import { DeviceService } from 'src/js/services/device';
@@ -53,8 +53,8 @@ class UrlDisplay extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Fade in={Boolean(this.props.url)}>
-          <Card className="url-display">
+        <Grow in={Boolean(this.props.url)}>
+          <Card className="url-display" elevation={6}>
             <CardContent>
               <span className="url">{this.props.url}</span>
             </CardContent>
@@ -69,7 +69,7 @@ class UrlDisplay extends React.Component {
               </CopyToClipboard>
             </CardActions>
           </Card>
-        </Fade>
+        </Grow>
         <Snackbar
           open={this.state.copied}
           autoHideDuration={6000}

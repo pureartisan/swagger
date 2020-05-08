@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 
 import { BitbucketIcon, GitlabIcon } from 'src/js/components/icons';
 import { SsoProviderButton } from 'src/js/components/sso-provider-button';
@@ -28,8 +28,11 @@ class FooterComponent extends React.Component {
       <AppBar position="fixed" color="primary" className="main-footer">
         <Toolbar>
 
+          <Typography variant="caption" className="info">
+            You can now access files in private repos on Bitbucket and Gitlab using Single Sign-On (OAuth2).
+          </Typography>
+
           <SsoProviderButton
-            edge="start"
             active={this.props.sso[GitlabService.getProviderName()]}
             service={GitlabService}
             label="Gitlab"

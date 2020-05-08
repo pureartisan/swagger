@@ -2,4 +2,9 @@
   top: auto !important;
   bottom: 0;
   background: white !important;
+
+  .info {
+    flex-grow: 1;
+    margin-right: 15px;
+  }
 }

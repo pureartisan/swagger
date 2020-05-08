@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CssBaseline, Container, TextField, Button} from '@material-ui/core';
+import { CssBaseline, Container, TextField, Button, Grow } from '@material-ui/core';
 import { Link as LinkIcon } from '@material-ui/icons';
 
 import { UrlService } from 'src/js/services/url';
@@ -67,15 +67,20 @@ class MainForm extends React.Component {
         <CssBaseline />
         <Container maxWidth="lg">
           <div className="main-form">
-            <h1>Swagger Visualizer</h1>
+            <h1>{'{·Swagger·Visualizer·}'}</h1>
             <form noValidate autoComplete="off" onSubmit={this.handleFormSubmit}>
-              <TextField
-                className="input"
-                placeholder="Enter YAML or JSON url for Swagger/OAS"
-                variant="outlined"
-                autoFocus={true}
-                onChange={this.handleInputChange}
-              />
+              <Grow
+                in={true}
+                timeout={2000}
+              >
+                <TextField
+                  className="input"
+                  placeholder="Enter YAML or JSON url for Swagger/OAS"
+                  variant="outlined"
+                  autoFocus={true}
+                  onChange={this.handleInputChange}
+                />
+              </Grow>
               <Button
                 variant="contained"
                 color="primary"

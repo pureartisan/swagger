@@ -1,4 +1,5 @@
-# Visualise your Swagger/OpenAPI files in the cloud
+# Swagger Visualizer
+## Visualise your Swagger/OpenAPI files in the cloud
 
 https://pureartisan.github.io/swagger/
 
@@ -18,3 +19,7 @@ Simply pass:
 ```
 https://pureartisan.github.io/swagger/?url=https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v3.0/petstore.yaml
 ```
+
+# Credits
+
+This project is open source and uses many other open source libraries. For more details, please checkout the [LICENSE](./LICENSE) and the [package.json](./package.json) files.

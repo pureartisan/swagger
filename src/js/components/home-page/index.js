@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { CircularProgress } from '@material-ui/core';
 
@@ -12,7 +11,7 @@ import { Footer } from 'src/js/components/footer';
 
 import './style.scss';
 
-class HomePageComponent extends React.Component {
+class HomePage extends React.Component {
 
   static propTypes = {};
 
@@ -73,11 +72,6 @@ class HomePageComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
-
-const HomePage = connect(mapStateToProps)(HomePageComponent);
-
 export {
-  HomePage,
-  HomePageComponent
+  HomePage
 };

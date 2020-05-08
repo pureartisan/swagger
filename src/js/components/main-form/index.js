@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { CssBaseline, Container, TextField, Button} from '@material-ui/core';
 import { Link as LinkIcon } from '@material-ui/icons';
@@ -11,7 +10,7 @@ import { UrlDisplay } from 'src/js/components/url-display';
 
 import './style.scss';
 
-class MainFormComponent extends React.Component {
+class MainForm extends React.Component {
 
   static propTypes = {};
 
@@ -95,11 +94,6 @@ class MainFormComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
-
-const MainForm = connect(mapStateToProps)(MainFormComponent);
-
 export {
-  MainForm,
-  MainFormComponent
+  MainForm
 };

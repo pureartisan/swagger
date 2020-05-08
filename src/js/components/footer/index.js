@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { AppBar, Toolbar } from '@material-ui/core';
@@ -12,7 +13,9 @@ import './style.scss';
 
 class FooterComponent extends React.Component {
 
-  static propTypes = {};
+  static propTypes = {
+    sso: PropTypes.object
+  };
 
   state = {};
 
@@ -27,6 +30,7 @@ class FooterComponent extends React.Component {
 
           <SsoProviderButton
             edge="start"
+            active={this.props.sso[GitlabService.getProviderName()]}
             service={GitlabService}
             label="Gitlab"
           >
@@ -35,6 +39,7 @@ class FooterComponent extends React.Component {
 
           <SsoProviderButton
             edge="end"
+            active={this.props.sso[BitbucketService.getProviderName()]}
             service={BitbucketService}
             label="Bitbucket"
           >
@@ -48,7 +53,9 @@ class FooterComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  sso: state.sso
+});
 
 const Footer = connect(mapStateToProps)(FooterComponent);
 

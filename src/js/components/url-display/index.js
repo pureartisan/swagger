@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import { Button, Card, CardActions, CardContent, Fade, Snackbar } from '@material-ui/core';
@@ -14,7 +13,7 @@ const Alert = (props) => (
   <MuiAlert elevation={6} variant="filled" {...props} />
 );
 
-class UrlDisplayComponent extends React.Component {
+class UrlDisplay extends React.Component {
 
   static propTypes = {
     url: PropTypes.string
@@ -87,11 +86,6 @@ class UrlDisplayComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
-
-const UrlDisplay = connect(mapStateToProps)(UrlDisplayComponent);
-
 export {
-  UrlDisplay,
-  UrlDisplayComponent
+  UrlDisplay
 };

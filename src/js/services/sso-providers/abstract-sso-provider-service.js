@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { StorageService } from 'src/js/services/storage';
 import { UrlService } from 'src/js/services/url';
 
+import { updateSsoProviderStatus } from 'src/js/actions/sso';
+
 const STORAGE_KEY_REDIRECT = 'sso-redirect';
 const STORAGE_KEY_AUTH_VERIFICATION = 'sso-auth-verfication';
 
@@ -35,6 +37,7 @@ class AbstractSsoProviderService {
   init() {
     this.accessToken = StorageService.cookieGet(this.getAccessTokenStorageKey());
     this.authVerificationToken = StorageService.sessionGet(STORAGE_KEY_AUTH_VERIFICATION);
+    updateSsoProviderStatus(this.getProviderName(), Boolean(this.accessToken));
     this.readAccessToken();
   }
 
@@ -62,6 +65,7 @@ class AbstractSsoProviderService {
             options.expires = new Date(new Date().getTime() + expiresIn * 1000);
           }
           StorageService.cookieSet(this.getAccessTokenStorageKey(), accessToken, options);
+          updateSsoProviderStatus(this.getProviderName(), true);
           this.redirectToPrevUrl();
         }
       }
@@ -78,6 +82,7 @@ class AbstractSsoProviderService {
 
   clearAccessToken() {
     this.accessToken = null;
+    updateSsoProviderStatus(this.getProviderName(), false);
     StorageService.cookieRemove(this.getAccessTokenStorageKey());
   }
 

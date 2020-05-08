@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+import { sso } from './sso';
+
+const rootReducer = combineReducers({
+  sso
+});
 
 export {
   rootReducer

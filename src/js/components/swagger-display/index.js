@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SwaggerUI from 'swagger-ui-react';
 
-import { connect } from 'react-redux';
-
 import { BitbucketService, GitlabService } from 'src/js/services/sso-providers';
 
-class SwaggerDisplayComponent extends React.Component {
+class SwaggerDisplay extends React.Component {
 
   static propTypes = {
     url: PropTypes.string
@@ -52,11 +50,6 @@ class SwaggerDisplayComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
-
-const SwaggerDisplay = connect(mapStateToProps)(SwaggerDisplayComponent);
-
 export {
-  SwaggerDisplay,
-  SwaggerDisplayComponent
+  SwaggerDisplay
 };

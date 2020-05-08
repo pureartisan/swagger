@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { connect } from 'react-redux';
 
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 
 import './style.scss';
 
-class SsoProviderButtonComponent extends React.Component {
+class SsoProviderButton extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
+    active: PropTypes.bool,
     service: PropTypes.object,
     label: PropTypes.string
   };
@@ -40,8 +40,7 @@ class SsoProviderButtonComponent extends React.Component {
   }
 
   render() {
-    const { service, className, label, ...props } = this.props;
-    const active = service.accessToken;
+    const { service, className, label, active, ...props } = this.props;
     return (
       <React.Fragment>
         <IconButton
@@ -68,11 +67,6 @@ class SsoProviderButtonComponent extends React.Component {
 
 }
 
-const mapStateToProps = () => ({});
-
-const SsoProviderButton = connect(mapStateToProps)(SsoProviderButtonComponent);
-
 export {
-  SsoProviderButton,
-  SsoProviderButtonComponent
+  SsoProviderButton
 };

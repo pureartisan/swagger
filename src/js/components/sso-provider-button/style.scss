@@ -1,9 +1,12 @@
 .sso-provider-button {
   &.inactive {
-    opacity: .5;
-
+    svg {
+      opacity: .5;
+    }
     &:hover {
-      opacity: 1;
+      svg {
+        opacity: 1;
+      }
     }
   }
 }

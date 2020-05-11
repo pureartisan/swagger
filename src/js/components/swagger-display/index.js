@@ -12,8 +12,16 @@ class SwaggerDisplay extends React.Component {
 
   state = {};
 
-  requestInterceptor(req) {
-    return this.modifyRequest(req);
+  expandModels() {
+    const swaggerUi = document.querySelector('.swagger-ui');
+    if (swaggerUi) {
+      const modelHeaders = swaggerUi.querySelectorAll(
+        '.model-container > .model-box > span:not(.model-box):first-of-type'
+      );
+      if (modelHeaders) {
+        modelHeaders.forEach(item => item.click());
+      }
+    }
   }
 
   async modifyRequest(req) {
@@ -35,6 +43,14 @@ class SwaggerDisplay extends React.Component {
     return req;
   }
 
+  requestInterceptor(req) {
+    return this.modifyRequest(req);
+  }
+
+  handleComplete() {
+    this.expandModels();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -43,6 +59,7 @@ class SwaggerDisplay extends React.Component {
             docExpansion="full"
             url={this.props.url}
             requestInterceptor={req => this.requestInterceptor(req)}
+            onComplete={system => this.handleComplete(system)}
           />
         )}
       </React.Fragment>

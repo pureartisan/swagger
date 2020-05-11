@@ -40,6 +40,7 @@ class SwaggerDisplay extends React.Component {
       <React.Fragment>
         {this.props.url && (
           <SwaggerUI
+            docExpansion="full"
             url={this.props.url}
             requestInterceptor={req => this.requestInterceptor(req)}
           />
